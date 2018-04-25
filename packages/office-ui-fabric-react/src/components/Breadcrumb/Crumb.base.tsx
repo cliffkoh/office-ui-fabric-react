@@ -6,10 +6,8 @@ import {
   classNamesFunction
 } from '../../Utilities';
 
-import { FocusZone, FocusZoneDirection } from '../../FocusZone';
 import { Icon } from '../../Icon';
 import { ActionButton } from '../../Button';
-import { IBreadcrumbProps, IBreadcrumbItem } from './Breadcrumb.types';
 import { TooltipHost, TooltipOverflowMode } from '../../Tooltip';
 import { ICrumbProps, ICrumbStyleProps, ICrumbStyles } from './Crumb.types';
 

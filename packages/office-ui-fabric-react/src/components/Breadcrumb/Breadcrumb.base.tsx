@@ -15,7 +15,6 @@ import {
 } from './Breadcrumb.types';
 import { DirectionalHint } from '../../common/DirectionalHint';
 import { ResizeGroup } from '../../ResizeGroup';
-import { TooltipHost, TooltipOverflowMode } from '../../Tooltip';
 import { CrumbBase } from './Crumb.base';
 
 export interface IBreadCrumbData {
@@ -42,7 +41,6 @@ export class BreadcrumbBase extends BaseComponent<IBreadcrumbProps, any> impleme
 
   public render() {
     const {
-      as,
       onReduceData = this._onReduceData,
       maxDisplayedItems,
       className,
@@ -61,7 +59,6 @@ export class BreadcrumbBase extends BaseComponent<IBreadcrumbProps, any> impleme
 
     return (
       <ResizeGroup
-        as={ as }
         className={ this._classNames.root }
         onRenderData={ this._onRenderData }
         onReduceData={ onReduceData }
