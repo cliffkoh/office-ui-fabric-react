@@ -16,7 +16,17 @@ class BreadcrumbWrapper extends React.Component<IBreadcrumbProps, {}> {
 }
 
 describe('Breadcrumb', () => {
-  it('renders breadcumb correctly', () => {
+  it('renders empty breadcrumb', () => {
+    const component = renderer.create(
+      <Breadcrumb items={ [] } />
+    );
+
+    const tree = component.toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  describe('basic rendering', () => {
     const items: IBreadcrumbItem[] = [
       { text: 'TestText1', key: 'TestKey1' },
       { text: 'TestText2', key: 'TestKey2' },

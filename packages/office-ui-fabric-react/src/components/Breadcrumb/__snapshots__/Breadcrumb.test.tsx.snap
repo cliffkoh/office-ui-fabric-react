@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Breadcrumb renders breadcumb correctly 1`] = `
+exports[`Breadcrumb basic rendering renders breadcumb correctly 1 1`] = `
 <div
   className=
       ms-ResizeGroup
@@ -398,7 +398,7 @@ exports[`Breadcrumb renders breadcumb correctly 1`] = `
 </div>
 `;
 
-exports[`Breadcrumb renders breadcumb correctly 2`] = `
+exports[`Breadcrumb basic rendering renders breadcumb correctly 2 1`] = `
 <div
   className=
       ms-ResizeGroup
@@ -553,7 +553,7 @@ exports[`Breadcrumb renders breadcumb correctly 2`] = `
               data-icon-name="More"
               role="presentation"
             />
-            
+
           </div>
         </button>
         <i
@@ -746,6 +746,47 @@ exports[`Breadcrumb renders breadcumb correctly 2`] = `
         </span>
       </li>
     </ol>
+  </div>
+</div>
+`;
+
+exports[`Breadcrumb renders empty breadcrumb 1`] = `
+<div
+  className=
+      ms-ResizeGroup
+      {
+        display: block;
+        position: relative;
+      }
+>
+  <div
+    style={
+      Object {
+        "position": "fixed",
+        "visibility": "hidden",
+      }
+    }
+  >
+    <div
+      aria-label={undefined}
+      className="ms-Breadcrumb"
+      role="navigation"
+    >
+      <div
+        aria-describedby={undefined}
+        aria-labelledby={undefined}
+        className="ms-FocusZone"
+        data-focuszone-id="FocusZone0"
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onMouseDownCapture={[Function]}
+        role="presentation"
+      >
+        <ol
+          className="ms-Breadcrumb-list"
+        />
+      </div>
+    </div>
   </div>
 </div>
 `;
