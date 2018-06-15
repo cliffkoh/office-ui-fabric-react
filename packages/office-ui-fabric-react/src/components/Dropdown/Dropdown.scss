@@ -12,82 +12,7 @@ $Dropdown-selectedItem-hover-bg: $ms-color-neutralLighter;
 $DropDown-height: 32px;
 $DropDown-item-height: 32px;
 
-// Mixin for high contrast mode states
-@mixin highContrastItemAndTitleState {
-  @include high-contrast {
-    background-color: Highlight;
-    border-color: Highlight;
-    color: HighlightText;
-  }
-
-  @include highContrastAdjust();
-}
-
-@mixin highContrastBorderState {
-  @include high-contrast {
-    border-color: Highlight;
-  }
-}
-
 .root {
-  @include ms-normalize;
-  @include ms-font-m;
-  color: $ms-color-neutralPrimary;
-
-  position: relative;
-  outline: 0;
-  user-select: none;
-
-  &:hover,
-  &:focus,
-  &:active {
-    .title,
-    .caretDown {
-      color: $ms-color-neutralDark;
-    }
-
-    .titleIsPlaceHolder {
-      color: $ms-color-neutralSecondary;
-    }
-  }
-
-  &:hover {
-    .title {
-      border-color: $ms-color-neutralDark;
-      @include highContrastBorderState();
-    }
-    .titleIsError {
-      border-color: $ms-color-error;
-    }
-  }
-
-  &:active {
-    .title {
-      border-color: $ms-color-themeDark;
-      @include highContrastBorderState();
-    }
-    .titleIsError {
-      border-color: $ms-color-error;
-    }
-  }
-
-  &:focus {
-    .title {
-      border-color: $ms-color-themePrimary;
-      @include highContrastItemAndTitleState();
-    }
-    .caretDown {
-      @include high-contrast {
-        color: HighlightText;
-      }
-
-      @include highContrastAdjust();
-    }
-    .titleIsError {
-      border-color: $ms-color-error;
-    }
-  }
-
   .titleIsError {
     border-color: $ms-color-error;
   }
@@ -127,7 +52,7 @@ $DropDown-item-height: 32px;
 
 .listWrapper {
   &:focus {
-    outline: 0
+    outline: 0;
   }
 }
 
@@ -166,12 +91,12 @@ $DropDown-item-height: 32px;
 
 .panel {
   // Force drop shadow even under medium breakpoint
-   :global(.ms-Panel-main) {
-    @include ms-drop-shadow(-30px, 0px, 30px, -30px, .2);
+  :global(.ms-Panel-main) {
+    @include ms-drop-shadow(-30px, 0px, 30px, -30px, 0.2);
   }
   // Remove padding as items have their own padding and bg
-   :global(.ms-Panel-contentInner) {
-    padding: 0 0 20px
+  :global(.ms-Panel-contentInner) {
+    padding: 0 0 20px;
   }
 }
 
@@ -180,8 +105,7 @@ $DropDown-item-height: 32px;
   border: 1px solid $ms-color-neutralLight;
 }
 
-
-.errorMessage{
+.errorMessage {
   color: $ms-color-error;
   @include ms-font-s;
   padding-top: 5px;
@@ -233,7 +157,7 @@ $DropDown-item-height: 32px;
     color: $ms-color-neutralTertiary;
     cursor: default;
   }
-   :global(.ms-Button-flexContainer) {
+  :global(.ms-Button-flexContainer) {
     justify-content: flex-start;
   }
 }

@@ -1,4 +1,5 @@
-import { IRenderFunction } from '../../Utilities';
+import { IRenderFunction, IStyleFunctionOrObject } from '../../Utilities';
+import { IStyle, ITheme } from '../../Styling';
 import { ISelectableOption } from '../../utilities/selectableOption/SelectableOption.types';
 import { ISelectableDroppableTextProps } from '../../utilities/selectableOption/SelectableDroppableText.types';
 import { ResponsiveMode } from '../../utilities/decorators/withResponsiveMode';
@@ -85,6 +86,16 @@ export interface IDropdownProps extends ISelectableDroppableTextProps<HTMLDivEle
    * Optional keytip for this dropdown
    */
   keytipProps?: IKeytipProps;
+
+  /**
+   * Theme provided by higher order component.
+   */
+  theme?: ITheme;
+
+  /**
+   * Call to provide customized styling that will layer on top of the variant rules.
+   */
+  styles?: IStyleFunctionOrObject<IDropdownProps, IDropdownStyles>;
 }
 
 export interface IDropdownOption extends ISelectableOption {
@@ -98,4 +109,22 @@ export interface IDropdownOption extends ISelectableOption {
    * @deprecated
    */
   isSelected?: boolean;
+}
+
+/**
+ * The props needed to construct styles. This represents the simplified set of immutable things which control the class names.
+ */
+export type IDropdownStyleProps = Pick<IDropdownProps, 'theme'> & {
+  /**
+   * Whether the dropdown is in an error state.
+   */
+  hasError: boolean;
+};
+
+/**
+ * Represents the stylable areas of the control.
+ */
+export interface IDropdownStyles {
+  /** Root element of the Dropdown. */
+  root: IStyle;
 }
