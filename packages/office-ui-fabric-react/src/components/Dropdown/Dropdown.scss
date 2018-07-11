@@ -13,10 +13,6 @@ $DropDown-height: 32px;
 $DropDown-item-height: 32px;
 
 .root {
-  .titleIsError {
-    border-color: $ms-color-error;
-  }
-
   :global(.ms-Label) {
     display: inline-block;
     margin-bottom: 8px;
