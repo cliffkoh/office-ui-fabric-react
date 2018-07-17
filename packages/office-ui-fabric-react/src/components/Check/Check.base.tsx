@@ -3,7 +3,10 @@ import { BaseComponent, customizable } from '../../Utilities';
 import { ICheckProps } from './Check.types';
 import { Icon } from '../../Icon';
 import { getStyles } from './Check.styles';
-import { getClassNames } from './Check.classNames';
+import { classNamesFunction } from '../../Utilities';
+import { ICheckStyleProps, ICheckStyles } from './Check.types';
+
+const getClassNames = classNamesFunction<ICheckStyleProps, ICheckStyles>();
 
 @customizable('Check', ['theme', 'styles'])
 export class CheckBase extends BaseComponent<ICheckProps, {}> {

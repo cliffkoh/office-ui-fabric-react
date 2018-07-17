@@ -7,7 +7,10 @@ import { DetailsList } from './DetailsList';
 import { IDetailsRowProps } from './DetailsRow';
 import { Shimmer, ShimmerElementsGroup, ShimmerElementType, IShimmerElement } from '../Shimmer';
 
-import { getClassNames as getRowClassNames } from './DetailsRow.classNames';
+import { IDetailsRowStyleProps, IDetailsRowStyles } from './DetailsRow.types';
+import { classNamesFunction } from '../../Utilities';
+
+const getRowClassNames = classNamesFunction<IDetailsRowStyleProps, IDetailsRowStyles>();
 
 import * as listStyles from './DetailsList.scss';
 
