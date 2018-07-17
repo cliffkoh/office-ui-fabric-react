@@ -28,7 +28,6 @@ const TASKS_WITH_PREREQUISITES = [
   ['copy', null],
   ['sass', 'copy'],
   ['ts', 'sass'],
-  ['tslint', 'sass'],
   ['jest', 'sass'],
   ['webpack', 'ts']
 ];
