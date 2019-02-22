@@ -7,104 +7,66 @@ import { MarqueeSelection } from 'office-ui-fabric-react/lib/MarqueeSelection';
 import { Fabric } from 'office-ui-fabric-react/lib/Fabric';
 import { mergeStyles } from 'office-ui-fabric-react/lib/Styling';
 
-const exampleChildClass = mergeStyles({
-  display: 'block',
-  marginBottom: '10px'
-});
+const _getRandomInt = max => {
+  return Math.floor(Math.random() * Math.floor(max));
+};
 
-export interface IDetailsListBasicExampleItem {
-  key: number;
-  name: string;
-  value: number;
-}
-
-export interface IDetailsListBasicExampleState {
-  items: IDetailsListBasicExampleItem[];
-  selectionDetails: {};
-}
-
-export class DetailsListBasicExample extends React.Component<{}, IDetailsListBasicExampleState> {
-  private _selection: Selection;
-  private _allItems: IDetailsListBasicExampleItem[];
-  private _columns: IColumn[];
-
-  constructor(props: {}) {
-    super(props);
-
-    this._selection = new Selection({
-      onSelectionChanged: () => this.setState({ selectionDetails: this._getSelectionDetails() })
-    });
-
-    // Populate with items for demos.
-    this._allItems = [];
-    for (let i = 0; i < 200; i++) {
-      this._allItems.push({
-        key: i,
-        name: 'Item ' + i,
-        value: i
-      });
-    }
-
-    this._columns = [
-      { key: 'column1', name: 'Name', fieldName: 'name', minWidth: 100, maxWidth: 200, isResizable: true },
-      { key: 'column2', name: 'Value', fieldName: 'value', minWidth: 100, maxWidth: 200, isResizable: true }
-    ];
-
-    this.state = {
-      items: this._allItems,
-      selectionDetails: this._getSelectionDetails()
-    };
+const _columns = [
+  {
+    fieldName: 'id',
+    key: 'id',
+    name: 'id'
   }
+];
 
-  public render(): JSX.Element {
-    const { items, selectionDetails } = this.state;
+const _items = new Array(5).fill(undefined).map(() => ({ id: _getRandomInt(100) }));
+
+export class DetailsListBasicExample extends React.Component {
+  state = {
+    isDragDropEnabled: true
+  };
+
+  getDragDropEvents = () => {
+    const { isDragDropEnabled } = this.state;
+
+    if (!isDragDropEnabled) return null;
+
+    return {
+      canDrop: () => true,
+      canDrag: () => true,
+      onDragEnter: item => {},
+      onDrop: (item, e) => {
+        // this.handleDrop(item, e);
+        console.log('dropping');
+      }
+    };
+  };
+
+  render() {
+    const { isDragDropEnabled } = this.state;
 
     return (
-      <Fabric>
-        <div className={exampleChildClass}>{selectionDetails}</div>
-        <TextField
-          className={exampleChildClass}
-          label="Filter by name:"
-          onChange={this._onFilter}
-          styles={{ root: { maxWidth: '300px' } }}
-        />
-        <MarqueeSelection selection={this._selection}>
-          <DetailsList
-            items={items}
-            columns={this._columns}
-            setKey="set"
-            layoutMode={DetailsListLayoutMode.fixedColumns}
-            selection={this._selection}
-            selectionPreservedOnEmptyClick={true}
-            ariaLabelForSelectionColumn="Toggle selection"
-            ariaLabelForSelectAllCheckbox="Toggle selection for all items"
-            onItemInvoked={this._onItemInvoked}
-          />
-        </MarqueeSelection>
-      </Fabric>
+      <div>
+        <div>
+          <ul>
+            <li style={{ background: 'lightgreen' }}>Drag/Drop starts out as enabled (try dragging rows).</li>
+            <li style={{ background: 'pink' }}>
+              Disabling drag/Drop (with the button) changes the <code>dragDropEvents</code> props to <code>null</code>, but the rows are
+              still draggable.
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <button onClick={() => this.setState({ isDragDropEnabled: !isDragDropEnabled })}>
+            {isDragDropEnabled ? 'Disable' : 'Enable'} Drag/Drop
+          </button>
+
+          <div>Drag/Drop should be {isDragDropEnabled ? 'disabled' : 'enabled'}.</div>
+        </div>
+
+        <DetailsList columns={_columns} items={_items} dragDropEvents={this.getDragDropEvents()} />
+      </div>
     );
   }
-
-  private _getSelectionDetails(): string {
-    const selectionCount = this._selection.getSelectedCount();
-
-    switch (selectionCount) {
-      case 0:
-        return 'No items selected';
-      case 1:
-        return '1 item selected: ' + (this._selection.getSelection()[0] as IDetailsListBasicExampleItem).name;
-      default:
-        return `${selectionCount} items selected`;
-    }
-  }
-
-  private _onFilter = (ev: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, text: string): void => {
-    this.setState({
-      items: text ? this._allItems.filter(i => i.name.toLowerCase().indexOf(text) > -1) : this._allItems
-    });
-  };
-
-  private _onItemInvoked = (item: IDetailsListBasicExampleItem): void => {
-    alert(`Item invoked: ${item.name}`);
-  };
 }
